@@ -46,8 +46,39 @@ class UserManager(models.Manager):
         return errors
 
 class User(models.Model):
-    firstName = models.CharField(max_length = 255)
-    lastName = models.CharField(max_length = 255)
+    username = models.CharField(max_length = 50)
+    location = models.CharField(max_length = 50)
     email = models.CharField(max_length = 255)
     passHash = models.CharField(max_length = 255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
+
+class BandManager(models.Manager):
+    def miscValidator(self, postData):
+        pass
+
+class Band(models.Model):
+    name = models.CharField(max_length = 50)
+    description = models.CharField(max_length = 255)
+    subcribers = models.ManyToManyField(User, related_name="subscriptions")
+    picLink = models.CharField(max_length = 255)
+    email = models.CharField(max_length = 255)
+    passHash = models.CharField(max_length = 255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = BandManager()
+
+class EventManager(models.Manager):
+    def miscValidator(self, postData):
+        pass
+
+class Event(models.Model):
+    data = models.CharField(max_length = 255)
+    location = models.CharField(max_length = 255)
+    band = models.ForeignKey(User, related_name="events")
+    picLink = models.CharField(max_length = 255)
+    attendants = models.ManyToManyField(User, related_name="eventsAttending")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = EventManager()
