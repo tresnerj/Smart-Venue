@@ -29,20 +29,20 @@
                     {% if messages %}
                         <ul class="flashes">
                             {% for message in messages %}
-                                {% if message.extra_tags == "firstName" %}
+                                {% if message.extra_tags == "username" %}
                                     <li class='redText'>{{ message }}</li>
                                 {% endif %}
                             {% endfor %}
                         </ul>
                     {% endif %}
-                    <h6>First Name:</h6>
+                    <h6>User Name:</h6>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="John" name="firstName">
+                        <input type="text" class="form-control" placeholder="John's_dough_365" name="username">
                     </div>
                     {% if messages %}
                         <ul class="flashes">
                             {% for message in messages %}
-                                {% if message.extra_tags == "lastName" %}
+                                {% if message.extra_tags == "location" %}   
                                     <li class='redText'>{{ message }}</li>
                                 {% endif %}
                             {% endfor %}
